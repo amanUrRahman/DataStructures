@@ -23,7 +23,7 @@ public class OccurenceOfAnagram {
 		while (j < textLength) {
 
 			if (j - i + 1 < wordLength) {
-				if (wordMap.containsKey(word.charAt(j)) && wordMap.get(word.charAt(j)) > 0) {
+				if (wordMap.containsKey(text.charAt(j)) && wordMap.get(text.charAt(j)) > 0) {
 					wordMap.put(word.charAt(j), wordMap.get(word.charAt(j)) - 1);
 				}
 				j++;
@@ -33,7 +33,7 @@ public class OccurenceOfAnagram {
 					wordMap.put(text.charAt(j), wordMap.get(text.charAt(j)) - 1);
 				}
 
-				if (wordMap.values().stream().mapToInt(e -> Integer.valueOf(e)).sum() == 0) {
+				if (wordMap.values().stream().mapToInt(e -> Integer.valueOf(e)).allMatch(e -> e == 0)) {
 					occurences++;
 				}
 
