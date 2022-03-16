@@ -1,15 +1,12 @@
 package strings;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 public class AllPermutations {
-	static void permute(String s, String answer) {
+	static void permuteDistinct(String s, String answer, Set<String> set) {
 		if (s.length() == 0) {
-			System.out.print(answer + "  ");
+			set.add(answer);
 			return;
 		}
 
@@ -18,7 +15,16 @@ public class AllPermutations {
 			String left_substr = s.substring(0, i);
 			String right_substr = s.substring(i + 1);
 			String rest = left_substr + right_substr;
-			permute(rest, answer + ch);
+			permuteDistinct(rest, answer + ch, set);
+		}
+	}
+	
+	
+	public static void permute(String s, String answer) {
+		Set<String> set = new HashSet<>();
+		permuteDistinct(s,answer,set);
+		for (String str: set) {
+			System.out.print(str + " ");
 		}
 	}
 
@@ -29,14 +35,15 @@ public class AllPermutations {
 	    String answer="";
 	   
 	     
-	    s = "ABC";
+	    s = "SABA";
+	    permute(s,answer);
 	    
-	    Map<String, List<Integer>> variable = new HashMap<>();
-	    List<Integer> list = new ArrayList<>(Arrays.asList(1,2,3));
-	    variable.put("aman", list);
-	    System.out.println(variable);
-	    variable.get("aman").add(4);
-	    System.out.println(variable);
+		/*
+		 * Map<String, List<Integer>> variable = new HashMap<>(); List<Integer> list =
+		 * new ArrayList<>(Arrays.asList(1,2,3)); variable.put("aman", list);
+		 * System.out.println(variable); variable.get("aman").add(4);
+		 * System.out.println(variable);
+		 */
 	    
 	    
 	    //System.out.println((int)Math.sqrt(7));
